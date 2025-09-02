@@ -17,7 +17,7 @@ import KnowledgeBase from "./pages/KnowledgeBase";
 function App() {
   return (
     
-    <Router>
+  
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/services" element={<Services />} />
@@ -31,7 +31,7 @@ function App() {
         <Route path="/legalagreement" element={<LegalAgreement/>} />
         <Route path="/knowbase" element={<KnowledgeBase/>} />
       </Routes>
-    </Router>
+   
   );
 }
 
