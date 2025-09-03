@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+
 import { HashLink as HashLink } from "react-router-hash-link";
 import { FiArrowUpRight } from "react-icons/fi";
 import { FaStar } from "react-icons/fa";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Demoprojects from "../components/Demoproject";
-
+import axios from "axios"; // ✅ Import axios
 import CookiePopup from "../components/CookiePopup";
 
+const API_URL = "https://weetech-backend.onrender.com/";
 const framesData = [
   "Safeguards your digital environment while prioritizing data security and user trust",
   "Defends against evolving threats with a core focus on protecting your data and earning your trust",
@@ -34,6 +36,9 @@ const FADE_DURATION = 750;
 const BLANK_DURATION = 500;
 
 const Home = () => {
+  const [sections, setSections] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [phase, setPhase] = useState("visible");
  // ✅ Contact form state
@@ -43,7 +48,32 @@ const Home = () => {
     email: "",
     message: "",
   });
-   const handleChange = (e) => {
+
+   useEffect(() => {
+    const fetchSections = async () => {
+      try {
+        const res = await axios.get(API_URL, {
+          headers: { "Content-Type": "application/json" },
+        });
+        console.log("API response:", res.data);
+        setSections(res.data.sections || []);
+      } catch (err) {
+        console.error("Error fetching sections:", err);
+        setError("Failed to load content.");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchSections();
+  }, []);
+
+  const getSection = (id) =>
+    sections.find((section) => section.id === id) || { items: [], title: "" };
+
+  const hero = getSection("hero");
+  const clients = getSection("clients");
+  const industries = getSection("industry-expertise");
+  const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -205,15 +235,13 @@ Here are my details:%0A
                   <p>SECURE. INNOVATE. EMPOWER.</p>
                 </div>
                 <div className="w-h wow fadeInUp" data-wow-delay=".6s">
-                  <h1>How does Weetech works</h1>
+                  <h1> {hero.items[0].title}</h1>
                 </div>
                 <div className="w-p wow fadeInUp" data-wow-delay=".7s">
                   <p>
-                    Weetech works by providing end-to-end IT solutions, combining
-                    advanced cybersecurity measures with innovative web and app
-                    development services. It protects businesses and individuals
-                    through cutting-edge security protocols, threat detection,
-                    and encryption to prevent cyber risks.
+                    
+                  {hero.items[0].description}
+
                   </p>
                 </div>
                 <div className="w-btn-arr wow fadeInUp" data-wow-delay=".7s ">
@@ -227,7 +255,7 @@ Here are my details:%0A
               </div>
               <div className="work-vdo wow zoomIn" data-wow-delay=".7s">
                 <video
-                  src="/images/hit-vdo.mp4"
+                  src="https://adesigners.github.io/Weetech_Frontend/images/hit-vdo.mp4"
                   autoPlay
                   muted
                   loop
@@ -496,58 +524,7 @@ Here are my details:%0A
                   <h2>How It Works</h2>
                 </div>
               </div>
-              {/* <div className="process-tabs">
-                <div className="process">
-                  <div className="num">
-                    <img src="/images/num1.svg" alt="" />
-                  </div>
-                  <div className="p-h">Assessment</div>
-                  <div className="p-p">
-                    We conduct a thorough assessment of your current
-                    cybersecurity measures and identify any vulnerabilities.
-                  </div>
-                </div>
-                <div className="process">
-                  <div className="num">
-                    <img src="/images/num2.svg" alt="" />
-                  </div>
-                  <div className="p-h">Planning</div>
-                  <div className="p-p">
-                    Based on the assessment, we create a customized
-                    cybersecurity strategy tailored to your business needs.
-                  </div>
-                </div>
-                <div className="process">
-                  <div className="num">
-                    <img src="/images/num3.svg" alt="" />
-                  </div>
-                  <div className="p-h">Implementation</div>
-                  <div className="p-p">
-                    We implement cybersecurity solutions that integrate
-                    seamlessly with your business operations.
-                  </div>
-                </div>
-                <div className="process">
-                  <div className="num">
-                    <img src="/images/num4.svg" alt="" />
-                  </div>
-                  <div className="p-h">Monitoring</div>
-                  <div className="p-p">
-                    Our continuous monitoring services ensure that potential
-                    threats are identified and mitigated in real-time.
-                  </div>
-                </div>
-                <div className="process">
-                  <div className="num">
-                    <img src="/images/num5.svg" alt="" />
-                  </div>
-                  <div className="p-h">Incident Response</div>
-                  <div className="p-p">
-                    We offer a rapid incident response service to minimize the
-                    impact of cybersecurity breaches on your organization.
-                  </div>
-                </div>
-              </div> */}
+             
               <section className="stacking-card">
                 <div id="stack">
                   <div className="card wow fadeInLeft" data-wow-delay=".5s">
