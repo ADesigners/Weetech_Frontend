@@ -275,12 +275,12 @@ Here are my details:%0A
                   <p>SECURE. INNOVATE. EMPOWER.</p>
                 </div>
                 <div className="w-h wow fadeInUp" data-wow-delay=".6s">
-                  <h1> {heroData[0].title}</h1>
+                  <h1> {heroData[0]?.title}</h1>
                 </div>
                 <div className="w-p wow fadeInUp" data-wow-delay=".7s">
                   <p>
                     
-                  {heroData[0].description}
+                  {heroData[0]?.description}
 
                   </p>
                 </div>
