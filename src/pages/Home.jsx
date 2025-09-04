@@ -7,7 +7,7 @@ import { FaStar } from "react-icons/fa";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Demoprojects from "../components/Demoproject";
-import axios from "axios"; // ✅ Import axios
+// import axios from "axios"; // ✅ Import axios
 import CookiePopup from "../components/CookiePopup";
 
 const API_URL = "https://weetech-backend.onrender.com/";
@@ -59,23 +59,23 @@ const Home = () => {
     message: "",
   });
 
-   useEffect(() => {
-    const fetchSections = async () => {
-      try {
-        const res = await axios.get(API_URL, {
-          headers: { "Content-Type": "application/json" },
-        });
-        console.log("API response:", res.data);
-        setSections(res.data.sections || []);
-      } catch (err) {
-        console.error("Error fetching sections:", err);
-        setError("Failed to load content.");
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchSections();
-  }, []);
+//    useEffect(() => {
+//     const fetchSections = async () => {
+//       try {
+//         const res = await axios.get(API_URL, {
+//           headers: { "Content-Type": "application/json" },
+//         });
+//         console.log("API response:", res.data);
+//         setSections(res.data.sections || []);
+//       } catch (err) {
+//         console.error("Error fetching sections:", err);
+//         setError("Failed to load content.");
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
+//     fetchSections();
+//   }, []);
 
   const getSection = (id) =>
     sections.find((section) => section.id === id) || { items: [], title: "" };
@@ -275,12 +275,12 @@ Here are my details:%0A
                   <p>SECURE. INNOVATE. EMPOWER.</p>
                 </div>
                 <div className="w-h wow fadeInUp" data-wow-delay=".6s">
-                  <h1> {hero.items[0].title}</h1>
+                  <h1> {heroData[0].title}</h1>
                 </div>
                 <div className="w-p wow fadeInUp" data-wow-delay=".7s">
                   <p>
                     
-                  {hero.items[0].description}
+                  {heroData[0].description}
 
                   </p>
                 </div>
