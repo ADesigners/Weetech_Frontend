@@ -6,7 +6,6 @@ const TermsOfServices = () => {
   return (
     <>
       <Header />
-
       <section className="policy-section section-margin">
         <div className="inner-width">
           <main className="policy-doc">

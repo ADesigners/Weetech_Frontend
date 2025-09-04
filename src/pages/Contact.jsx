@@ -37,7 +37,7 @@ Here are my details:%0A
 💬 Message: ${message}`;
 
     // ✅ Replace with your WhatsApp number (country code + number, no + sign)
-    const whatsappNumber = "7000183292";
+    const whatsappNumber = "9201530104";
 
     window.open(
       `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`,
@@ -85,7 +85,7 @@ Here are my details:%0A
                     <div className="cp-info">
                       <div className="info-item">
                         <FaPhoneAlt className="info-icon" />
-                        +91-7000183292
+                        +91-9201530104
                       </div>
 
                       <div className="info-item">
