@@ -353,7 +353,7 @@ const ProjectCard = ({ images, name, date, current, video, url }) => {
                     />
                 ))}
                 {video && (
-                    <video src={video} className="project-fade-img active" allow="autoplay" />
+                    <video src={video} autoPlay className="project-fade-img active" allow="autoplay" />
                 )}
             </div>
             <div className="pro-txt">

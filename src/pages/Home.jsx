@@ -10,6 +10,7 @@ import Demoprojects from "../components/Demoproject";
 // import axios from "axios"; // ✅ Import axios
 import CookiePopup from "../components/CookiePopup";
 import { loadSection } from "../utils/util";
+import Team from "../components/Team";
 
 const framesData = [
   "Safeguards your digital environment while prioritizing data security and user trust",
@@ -84,25 +85,6 @@ const Home = () => {
       [e.target.name]: e.target.value,
     });
   };
-
-  const loadSection = async (sectionName) => {
-    const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${sectionName}?key=${API_KEY}`);
-    const data = await response.json();
-    const rows = data.values;
-
-    if (!rows || rows.length < 2) return [];
-
-    const headers = rows[0];          // ["title","description","image","icon","video"]
-    const items = rows.slice(1).map(row =>
-      Object.fromEntries(
-        headers.map((key, i) => [key, row[i] || ""]) // create {title: "Welcome to WeeTech", ...}
-      )
-    )
-
-    console.log(items);
-
-    return items;
-  }
 
   useEffect(() => {
     loadSection("Hero").then(setHeroData);
@@ -638,7 +620,8 @@ Here are my details:%0A
         <Demoprojects />
 
 
-
+        {/* Team Section */}
+        <Team />
 
         {/* form-section */}
         <section className="form-section" id="form-section">
