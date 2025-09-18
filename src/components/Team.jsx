@@ -4,6 +4,7 @@ import { loadSection } from "../utils/util";
 const Team = () => {
   const [teamMembers, setTeamMembers] = useState([]);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     loadSection("Team").then((data) => setTeamMembers(data || []));
@@ -22,6 +23,15 @@ const Team = () => {
     }
   }, [teamMembers]);
 
+  // Auto-advance slides every 5s, pause on hover
+  useEffect(() => {
+    if (isHovered || slides.length <= 1) return;
+    const id = setInterval(() => {
+      setCurrentSlide((s) => (slides.length === 0 ? 0 : (s + 1) % slides.length));
+    }, 3000);
+    return () => clearInterval(id);
+  }, [isHovered, slides.length]);
+
   return (
     <section className="team-section section-margin" id="team-section">
       <div className="inner-width">
@@ -34,7 +44,11 @@ const Team = () => {
               <h2>Meet our team</h2>
             </div>
           </div>
-          <div className="testimonial-carousel h-100">
+          <div
+            className="testimonial-carousel h-100"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
             <div className="testimonial-row fade-in">
               {slides.length > 0 && (
                 slides[currentSlide].map((item, index) => (

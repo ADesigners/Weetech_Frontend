@@ -349,7 +349,7 @@ const ProjectCard = ({ images, name, date, current, video, url }) => {
                         src={img}
                         alt=""
                         className={`project-fade-img${current === idx ? " active" : ""}`}
-                        style={{ opacity: current === idx ? "1" : "0" }}
+                        style={{ opacity: current === idx ? "1" : "0", objectFit: "contain" }}
                     />
                 ))}
                 {video && (
