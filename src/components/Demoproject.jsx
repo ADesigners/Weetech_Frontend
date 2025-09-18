@@ -349,11 +349,11 @@ const ProjectCard = ({ images, name, date, current, video, url }) => {
                         src={img}
                         alt=""
                         className={`project-fade-img${current === idx ? " active" : ""}`}
-                        style={{ opacity: current === idx ? "1" : "0" }}
+                        style={{ opacity: current === idx ? "1" : "0", objectFit: "contain" }}
                     />
                 ))}
                 {video && (
-                    <video src={video} className="project-fade-img active" allow="autoplay" />
+                    <video src={video} autoPlay className="project-fade-img active" allow="autoplay" />
                 )}
             </div>
             <div className="pro-txt">

@@ -631,7 +631,8 @@ body {
 
 .projects-section .projects .projects-wrapper .project-card .pro-img {
     width: 100%;
-    height: auto;
+    /* height: auto; */
+    max-height: 200px;
     margin-bottom: 1rem;
     overflow: hidden;
     border-radius: 16px;
@@ -1615,7 +1616,7 @@ body {
     font-size: 1.125rem;
     font-weight: normal;
     line-height: 170%;
-    text-align: justify;
+    text-align: left;
 }
 
 .testimonial-content h4 {
