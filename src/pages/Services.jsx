@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FaArrowDown } from "react-icons/fa";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import CookiePopup from "../components/CookiePopup";
+import { loadSection } from "../utils/util";
 
 const Services = () => {
+  const [servicesData, setServicesData] = useState([]);
+  const devSection = useRef(null);
+
+  useEffect(() => {
+    loadSection("Services").then(setServicesData);
+  }, []);
+
   return (
     <>
       <Header />
@@ -19,19 +27,15 @@ const Services = () => {
                 </div>
                 <div className="sht-p wow fadeInUp" data-wow-delay=".5s">
                   <p>
-                    Experience the peace of mind that comes with knowing your
-                    data is secured by an impenetrable defence. The WeeTech
-                    Firewall is a powerful, easy-to-use security device designed
-                    to safeguard businesses and individuals from ever-evolving
-                    cyber threats.
+                  Bring your ideas to life with WeeTech’s premium development services. From websites to mobile apps, desktop solutions to custom software, we design and build powerful, scalable technology tailored to your business needs.
                   </p>
-                  <a
-                    href="mailto:hoshangabadwalam@gmail.com"
+                  <button
+                    onClick={() => devSection.current.scrollIntoView({ behavior: 'smooth' })}
                     className="sht-b wow fadeInUp"
                     data-wow-delay=".7s"
                   >
                     Learn More <FaArrowDown className="shtb-icon" />
-                  </a>
+                  </button>
                 </div>
               </div>
               <div className="s-hero-img floating-object">
@@ -42,113 +46,48 @@ const Services = () => {
         </div>
 
         {/* development section  */}
-        <div className="dev-section section-margin" id="dev-section">
-          <div className="inner-width">
-            <div className="dev-head">
-              <h4>Development</h4>
-            </div>
-            <div className="dev-para">
-              <p>
-                Unlock the full value of today’s modern workforce in both remote
-                and hybrid environments. Deployment Services provide simple
-                access to customized technology that is ready from day one to
-                boost the productivity of your IT Department and the teams they
-                support.
-              </p>
-            </div>
-          </div>
-
-          {/* Web */}
-          <div className="devrow fright wow fadeInRight" data-wow-delay=".5s">
-            <div className="devr-txt">
-              <div className="devt-h">
-                <h3>Web</h3>
+        <div ref={devSection} className="dev-section section-margin" id="dev-section">
+        {servicesData && servicesData.length > 0 && (
+            servicesData.map((item, idx) => (
+              <div
+                key={idx}
+                className={`devrow ${idx % 2 === 0 ? "fright" : "fleft"} wow ${
+                  idx % 2 === 0 ? "fadeInRight" : "fadeInLeft"
+                }`}
+                data-wow-delay=".5s"
+              >
+                {idx % 2 !== 0 && (
+                  <div className="dev-img">
+                    {item.image ? (
+                      <img src={item.image} alt="" />
+                    ) : (
+                      <img src="/images/ser-bann.jpg" alt="" />
+                    )}
+                  </div>
+                )}
+                <div className="devr-txt">
+                  <div className="devt-h">
+                    <h3>{item.title || ""}</h3>
+                  </div>
+                  <div className="devt-b">
+                    <p>{item.subtitle || item.tagline || ""}</p>
+                  </div>
+                  <div className="devt-p">
+                    <p>{item.description || ""}</p>
+                  </div>
+                </div>
+                {idx % 2 === 0 && (
+                  <div className="dev-img">
+                    {item.image ? (
+                      <img src={item.image} alt="" />
+                    ) : (
+                      <img src="/images/ser-bann.jpg" alt="" />
+                    )}
+                  </div>
+                )}
               </div>
-              <div className="devt-b">
-                <p>Build Fast, Scalable, and Responsive Websites</p>
-              </div>
-              <div className="devt-p">
-                <p>
-                  We create responsive, high-performance websites using modern
-                  technologies that drive results. Whether it's a landing page
-                  or a dynamic web platform, our development ensures speed,
-                  security, and seamless user experiences.
-                </p>
-              </div>
-            </div>
-            <div className="dev-img">
-              <img src="/images/ser-bann.jpg" alt="" />
-            </div>
-          </div>
-
-          {/* App */}
-          <div className="devrow fleft wow fadeInLeft" data-wow-delay=".5s">
-            <div className="dev-img">
-              <img src="/images/ser-bann.jpg" alt="" />
-            </div>
-            <div className="devr-txt">
-              <div className="devt-h">
-                <h3>App</h3>
-              </div>
-              <div className="devt-b">
-                <p>Innovative Mobile Solutions Tailored to Your Business</p>
-              </div>
-              <div className="devt-p">
-                <p>
-                  From concept to launch, we develop sleek, high-performing
-                  mobile apps for Android and iOS. Our apps deliver smooth user
-                  experiences, robust functionality, and scalability—empowering
-                  your business to stay connected and competitive.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Cyber Security */}
-          <div className="devrow fright wow fadeInRight" data-wow-delay=".5s">
-            <div className="devr-txt">
-              <div className="devt-h">
-                <h3>Cyber Security</h3>
-              </div>
-              <div className="devt-b">
-                <p>Robust Protection for Your Digital Assets</p>
-              </div>
-              <div className="devt-p">
-                <p>
-                  We provide end-to-end cybersecurity services, including threat
-                  detection, risk assessment, firewall setup, and data
-                  encryption. Our goal is to ensure your systems remain secure
-                  and compliant in an ever-evolving threat landscape.
-                </p>
-              </div>
-            </div>
-            <div className="dev-img">
-              <img src="/images/ser-bann.jpg" alt="" />
-            </div>
-          </div>
-
-          {/* Digital Marketing */}
-          <div className="devrow fleft wow fadeInLeft" data-wow-delay=".5s">
-            <div className="dev-img">
-              <img src="/images/ser-bann.jpg" alt="" />
-            </div>
-            <div className="devr-txt">
-              <div className="devt-h">
-                <h3>Digital Marketing</h3>
-              </div>
-              <div className="devt-b">
-                <p>Accelerate Your Growth with Data-Driven Strategies</p>
-              </div>
-              <div className="devt-p">
-                <p>
-                  Our digital marketing experts help you reach the right
-                  audience through SEO, PPC, content marketing, and social media
-                  campaigns. We build brand visibility, drive engagement, and
-                  maximize ROI with measurable, targeted strategies.
-                </p>
-              </div>
-            </div>
-          </div>
+            ))
+          )}
         </div>
 
         {/* Banner section */}
@@ -216,7 +155,7 @@ const Services = () => {
                   <div className="serp">
                     <p>
                       We rigorously test every line of code to ensure top
-                      performance, functionality, and security. Our QA team
+                      performance, functionality, and security. Our team
                       guarantees a polished product through automated and manual
                       testing methods.
                     </p>
@@ -224,7 +163,7 @@ const Services = () => {
                 </div>
                 <img src="/images/testing.jpg" alt="" />
               </div>
-              <div className="service-card wow zoomIn" data-wow-delay=".5s">
+              {/* <div className="service-card wow zoomIn" data-wow-delay=".5s">
                 <div className="ser-txt">
                   <div className="serb">
                     <p>BOOST VISIBILITY. DRIVE RESULTS</p>
@@ -242,7 +181,7 @@ const Services = () => {
                   </div>
                 </div>
                 <img src="/images/marketing.jpg" alt="" />
-              </div>
+              </div> */}
               <div className="service-card wow zoomIn" data-wow-delay=".5s">
                 <div className="ser-txt">
                   <div className="serb">
@@ -279,7 +218,7 @@ const Services = () => {
                 </div>
                 <img src="/images/deployment.jpg" alt="" />
               </div>
-              <div className="service-card wow zoomIn" data-wow-delay=".5s">
+              {/* <div className="service-card wow zoomIn" data-wow-delay=".5s">
                 <div className="ser-txt">
                   <div className="serb">
                     <p>BOOST VISIBILITY. DRIVE RESULTS</p>
@@ -296,7 +235,7 @@ const Services = () => {
                   </div>
                 </div>
                 <img src="/images/testing.jpg" alt="" />
-              </div>
+              </div> */}
               <div className="service-card wow zoomIn" data-wow-delay=".5s">
                 <div className="ser-txt">
                   <div className="serb">

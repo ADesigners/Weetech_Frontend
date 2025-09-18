@@ -626,7 +626,7 @@ body {
 .projects-section .projects .projects-wrapper .project-card:hover {
     transform: translateY(-20px);
     background-color: #19191B;
-    /* box-shadow: 0px 0px 20px #a1a1aa8a; */
+    box-shadow: 0px 0px 20px #FEE119;
 }
 
 .projects-section .projects .projects-wrapper .project-card .pro-img {
@@ -674,7 +674,9 @@ body {
     left: 0;
     width: 100%;
     height: auto;
+    border: 0;
 }
+
 
 .project-fade-img.active {
     opacity: 1;
@@ -1934,8 +1936,20 @@ body {
 .devrow .dev-img {
     width: 45.625rem;
     height: auto;
+    position: relative;
     overflow: hidden;
     z-index: -1;
+}
+
+.devrow .dev-img:after {
+    content: '\A';
+    position: absolute;
+    width: 100%; height:100%;
+    top:0; left:0;
+    background:rgba(0,0,0,0.3);
+    opacity: 1;
+    transition: all 1s;
+    -webkit-transition: all 1s;
 }
 
 .fright .dev-img {

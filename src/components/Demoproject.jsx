@@ -314,9 +314,9 @@
 //           <div className="projects-wrapper">
 //             {visibleProjects.map((project, idx) => (
 //               <ProjectCard
-//                 key={project.name + idx}
+//                 key={project.title + idx}
 //                 images={project.images}
-//                 name={project.name}
+//                 name={project.title}
 //                 date={project.date}
 //               />
 //             ))}
@@ -336,234 +336,117 @@
 
 import React, { useState, useEffect } from "react";
 import { FaCalendarAlt } from "react-icons/fa";
+import { loadSection } from "../utils/util";
 
 // ProjectCard component
-const ProjectCard = ({ images, name, date, current }) => {
-  return (
-    <>
-      <div className="pro-img">
-        {images.map((img, idx) => (
-          <img
-            key={img}
-            src={img}
-            alt=""
-            className={`project-fade-img${current === idx ? " active" : ""}`}
-            style={{ opacity: current === idx ? "1" : "0" }}
-          />
-        ))}
-      </div>
-      <div className="pro-txt">
-        <div className="pro-name">
-          <h5>{name}</h5>
-        </div>
-        <div className="pro-date">
-          <FaCalendarAlt className="date-icon" /> <p>{date}</p>
-        </div>
-      </div>
-    </>
-  );
+const ProjectCard = ({ images, name, date, current, video, url }) => {
+    return (
+        <a href={url} target="_blank">
+            <div className="pro-img">
+                {images.length > 0 && images.map((img, idx) => (
+                    <img
+                        key={img}
+                        src={img}
+                        alt=""
+                        className={`project-fade-img${current === idx ? " active" : ""}`}
+                        style={{ opacity: current === idx ? "1" : "0" }}
+                    />
+                ))}
+                {video && (
+                    <video src={video} className="project-fade-img active" allow="autoplay" />
+                )}
+            </div>
+            <div className="pro-txt">
+                <div className="pro-name">
+                    <h5>{name}</h5>
+                </div>
+                <div className="pro-date">
+                    <FaCalendarAlt className="date-icon" /> <p>{date}</p>
+                </div>
+            </div>
+        </a>
+    );
 };
-
-const projectsData = [
-  {
-    images: [
-      "/images/sec1.png",
-      "/images/sec2.png",
-      "/images/sec3.png",
-      "/images/sec4.png",
-    ],
-    name: "Sec Council",
-    date: "2024",
-  },
- 
-  {
-    images: [
-      "/images/Cip1.png",
-      "/images/Cip2.png",
-      "/images/Cip3.png",
-      "/images/Cip4.png",
-    ],
-    name: "Cipherly",
-    date: "2023",
-  },
-  
-  
-  {
-    images: [
-      "/images/PG1.png",
-      "/images/PG2.png",
-      "/images/PG3.png",
-      "/images/PG4.png",
-    ],
-    name: "Raj Paying Guests",
-    date: "2025",
-  },
-
-  {
-    images: [
-      "/images/stf1.png",
-      "/images/stf2.png",
-      "/images/stf3.png",
-      "/images/stf4.png",
-    ],
-    name: "Standfill India",
-    date: "2023",
-  },
-  
-  
-  {
-    images: [
-      "/images/casino1.png",
-      "/images/casino2.png",
-      "/images/casino3.png",
-      "/images/casino4.png",
-    ],
-    name: "Casino Online App",
-    date: "Month, 2024",
-  },
- 
-  {
-    images: [
-      "/images/orl1.png",
-      "/images/orl2.png",
-      "/images/orl3.png",
-      "/images/orl4.png",
-    ],
-    name: "On Request Lab",
-    date: "Month, 2025",
-  },
-  {
-    images: [
-      "/images/calpha1.png",
-      "/images/calpha2.png",
-      "/images/calpha3.png",
-      "/images/calpha4.png",
-    ],
-    name: "Casino Alpha",
-    date: "Month, 2024",
-  },
-
-  {
-    images: [
-      "/images/gro1.png",
-      "/images/gro2.png",
-      "/images/gro3.png",
-      "/images/gro4.png",
-    ],
-    name: "Gro High Institute",
-    date: "Month, 2025",
-  },
-  {
-    images: [
-      "/images/law1.png",
-      "/images/law2.png",
-      "/images/law3.png",
-      "/images/law4.png",
-    ],
-    name: "Advocate Website",
-    date: "Month, 2025",
-  },
-  {
-    images: [
-      "/images/rajwada1.png",
-      "/images/rajwada2.png",
-      "/images/rajwada3.png",
-      "/images/rajwada4.png",
-    ],
-    name: "Rajwada Paying Guests",
-    date: "Month, 2025",
-  },
-  
-  {
-    images: [
-      "/images/Pa1.png",
-      "/images/Pa2.png",
-      "/images/Pa3.png",
-      "/images/Pa4.png",
-    ],
-    name: "Shrees Shiva Amba",
-    date: "Month, 2024",
-  },
-  {
-    images: [
-      "/images/dfk1.png",
-      "/images/dfk2.jpeg",
-      "/images/dfk3.jpeg",
-      "/images/dfk4.jpeg",
-    ],
-    name: "Dev Kripa Finance",
-    date: "Month, 2024",
-  },
-];
 
 const INITIAL_VISIBLE = 6;
 
 const Projects = () => {
-  const [showAll, setShowAll] = useState(false);
-  const [currentImgIndexes, setCurrentImgIndexes] = useState({});
+    const [showAll, setShowAll] = useState(false);
+    const [currentImgIndexes, setCurrentImgIndexes] = useState({});
+    const [projectsData, setProjectsData] = useState([]);
 
-  const handleToggle = () => setShowAll((prev) => !prev);
-
-  // Timer for image slideshow for each project
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImgIndexes((prev) => {
-        const updated = {};
-        (showAll
-          ? projectsData
-          : projectsData.slice(0, INITIAL_VISIBLE)
-        ).forEach((_, i) => {
-          const prevIdx = prev[i] || 0;
-          const len = projectsData[i].images.length;
-          updated[i] = (prevIdx + 1) % len;
+    useEffect(() => {
+        loadSection("Portfolio").then((data) => {
+            setProjectsData(data.map(pr => {
+                return { ...pr, images: pr.images ? pr.images.split(',') : [] }
+            }))
         });
-        return updated;
-      });
-    }, 2500);
-    return () => clearInterval(interval);
-  }, [showAll]);
+    }, []);
 
-  const visibleProjects = showAll
-    ? projectsData
-    : projectsData.slice(0, INITIAL_VISIBLE);
+    const handleToggle = () => setShowAll((prev) => !prev);
 
-  return (
-    <section className="projects-section section-margin" id="projects-section">
-      <div className="inner-width">
-        <div className="section-heading wow fadeInUp" data-wow-delay=".3s">
-          <div className="smaller-heading">
-            <p>DISCOVER THE IMPACT OF OUR INNOVATIVE SOLUTIONS.</p>
-          </div>
-          <div className="larger-heading">
-            <h2>Our Featured Projects</h2>
-          </div>
-        </div>
-        <div className="projects">
-          <div className="projects-wrapper">
-            {visibleProjects.map((project, idx) => (
-              <div
-                key={project.name + idx}
-                className="project-card wow fadeInUp"
-                data-wow-delay={`${(idx * 0.2).toFixed(1)}s`}
-              >
-                <ProjectCard
-                  images={project.images}
-                  name={project.name}
-                  date={project.date}
-                  current={currentImgIndexes[idx] || 0}
-                />
-              </div>
-            ))}
-          </div>
-          {projectsData.length > INITIAL_VISIBLE && (
-            <div className="pro-btn" onClick={handleToggle}>
-              {showAll ? "Show Less" : "Show More"}
+    // Timer for image slideshow for each project
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentImgIndexes((prev) => {
+                const updated = {};
+                (showAll
+                    ? projectsData
+                    : projectsData.slice(0, INITIAL_VISIBLE)
+                ).forEach((_, i) => {
+                    const prevIdx = prev[i] || 0;
+                    const len = projectsData[i].images.length;
+                    updated[i] = (prevIdx + 1) % len;
+                });
+                return updated;
+            });
+        }, 2500);
+        return () => clearInterval(interval);
+    }, [showAll]);
+
+    const visibleProjects = showAll
+        ? projectsData
+        : projectsData.slice(0, INITIAL_VISIBLE);
+
+    return (
+        <section className="projects-section section-margin" id="projects-section">
+            <div className="inner-width">
+                <div className="section-heading wow fadeInUp" data-wow-delay=".3s">
+                    <div className="smaller-heading">
+                        <p>DISCOVER THE IMPACT OF OUR INNOVATIVE SOLUTIONS.</p>
+                    </div>
+                    <div className="larger-heading">
+                        <h2>Our Featured Projects</h2>
+                    </div>
+                </div>
+                <div className="projects">
+                    <div className="projects-wrapper">
+                        {visibleProjects.map((project, idx) => (
+                            <div
+                                key={project.title + idx}
+                                className="project-card wow fadeInUp"
+                                data-wow-delay={`${(idx * 0.2).toFixed(1)}s`}
+                            >
+                                <ProjectCard
+                                    images={project.images}
+                                    name={project.title}
+                                    date={project.date}
+                                    url={project.url}
+                                    video={project.video}
+                                    current={currentImgIndexes[idx] || 0}
+                                />
+                            </div>
+                        ))}
+                    </div>
+                    {projectsData.length > INITIAL_VISIBLE && (
+                        <div className="pro-btn" onClick={handleToggle}>
+                            {showAll ? "Show Less" : "Show More"}
+                        </div>
+                    )}
+                </div>
             </div>
-          )}
-        </div>
-      </div>
-    </section>
-  );
+        </section>
+    );
 };
 
 export default Projects;

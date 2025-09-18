@@ -9,6 +9,7 @@ import Footer from "../components/Footer";
 import Demoprojects from "../components/Demoproject";
 // import axios from "axios"; // ✅ Import axios
 import CookiePopup from "../components/CookiePopup";
+import { loadSection } from "../utils/util";
 
 const API_URL = "https://weetech-backend.onrender.com/";
 const framesData = [
@@ -34,8 +35,6 @@ const VISIBLE_DURATION = 3000;
 const FADE_DURATION = 750;
 const BLANK_DURATION = 500;
 
-const SHEET_ID = "1qUnPrjzd_jDCV-arqkdEV6JP33Ix0s03cXD0VrO8IuY";
-const API_KEY = "AIzaSyBOtvQlgxFpvzPrdPJv2a_VDA6tQgXebNI";
 
 const Home = () => {
   const [sections, setSections] = useState([]);
@@ -44,9 +43,7 @@ const Home = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [phase, setPhase] = useState("visible");
   const [heroData, setHeroData] = useState([]);
-  const [servicesData, setServicesData] = useState([]);
   const [testimonialsData, setTestimonialsData] = useState([]);
-  const [portfolioData, setPortfolioData] = useState([]);
   const [clientsData, setClientsData] = useState([]);
   const [industryData, setIndustryData] = useState([]);
   const [teamData, setTeamData] = useState([]);
@@ -90,30 +87,9 @@ const Home = () => {
     });
   };
 
-  const loadSection = async (sectionName) => {
-    const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${sectionName}?key=${API_KEY}`);
-    const data = await response.json();
-    const rows = data.values;
-
-    if (!rows || rows.length < 2) return [];
-
-    const headers = rows[0];          // ["title","description","image","icon","video"]
-    const items = rows.slice(1).map(row =>
-        Object.fromEntries(
-        headers.map((key, i) => [key, row[i] || ""]) // create {title: "Welcome to WeeTech", ...}
-        )
-    )
-
-    console.log(items);
-
-    return items;
-  }
-
   useEffect(() => {
     loadSection("Hero").then(setHeroData);
-    loadSection("Services").then(setServicesData);
     loadSection("Testimonials").then(setTestimonialsData);
-    loadSection("Portfolio").then(setPortfolioData);
     loadSection("Clients").then(setClientsData);
     loadSection("IndustryExpertise").then(setIndustryData);
     loadSection("Team").then(setTeamData);
@@ -424,16 +400,19 @@ Here are my details:%0A
                 </div>
               </div>
               <div className="indus-grid">
-                <div className="industry wow zoomIn" data-wow-delay=".3s">
-                  <div className="i-image">
-                    <img src="/images/indus1.png" alt="" />
-                  </div>
-                  <div className="i-head"> E-commerce</div>
-                  <div className="i-p">
-                    Scalable online store solutions for seamless shopping
-                    experiences
-                  </div>
-                </div>
+              {industryData.length > 0 && industryData.map((item, idx) => {
+                    (
+                        <div className="industry wow zoomIn" data-wow-delay={`${0.3 + 0.2 * idx}s`}>
+                            <div className="i-image">
+                                <img src={item.image} alt="" />
+                            </div>
+                            <div className="i-head">{item.title}</div>
+                            <div className="i-p">
+                                {item.description}
+                            </div>
+                        </div>
+                    )
+                })}
                 <div className="industry wow zoomIn" data-wow-delay=".5s">
                   <div className="i-image">
                     <img src="/images/indus2.png" alt="" />
