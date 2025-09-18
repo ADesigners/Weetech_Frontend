@@ -1,109 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="google-site-verification"
+      content="7lztYCTcb9ZbgD2wRR9A0V6uHXspyVtO-DlFeGPdbq8"
+    />
 
-<head>
+    <title>
+      WeeTech – Leading IT Consultancy & Software Development Company
+    </title>
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-P9W9L2F3");
+    </script>
+    <!-- End Google Tag Manager -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: "custom_event",
+        event_category: "engagement",
+        event_action: "manual_trigger",
+        event_label: "setup_check",
+        value: 1,
+      });
+    </script>
+    <script>
+      // Fetch public IP and push to dataLayer for uniqueness
+      (function () {
+        try {
+          fetch("https://api.ipify.org?format=json")
+            .then(function (res) {
+              return res.json();
+            })
+            .then(function (data) {
+              if (!window.dataLayer) window.dataLayer = [];
+              window.dataLayer.push({
+                event: "custom_event_ip",
+                event_category: "engagement",
+                event_action: "ip_captured",
+                user_ip: data && data.ip ? data.ip : "",
+              });
+            })
+            .catch(function () {
+              /* ignore */
+            });
+        } catch (e) {
+          // ignore
+        }
+      })();
+    </script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="google-site-verification" content="7lztYCTcb9ZbgD2wRR9A0V6uHXspyVtO-DlFeGPdbq8">
+    <!-- META TAGS -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="WeeTech provide online safety for individuals, businesses and provide training, internship in cybersecurity and web development. Experts in network security, SEO and web testing."
+    />
+    <meta
+      name="keyword"
+      content="Best IT company, top digital marketing company, SEO specialist, cyber security company, Best Digital Marketing services in indore, Information and network security."
+    />
+    <link
+      rel="canonical"
+      href="https://adesigners.github.io/Weetech_Frontend"
+    />
+    <meta name="robots" content="index, follow" />
 
-  <title>WeeTech – Leading IT Consultancy & Software Development Company</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Open Graph -->
+    <meta property="og:site_name" content="WeeTech" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="WeeTech – Leading IT Consultancy & Software Development Company"
+    />
+    <meta
+      property="og:description"
+      content="WeeTech delivers secure, scalable IT solutions: development, deployment, testing, cybersecurity, and 24/7 support."
+    />
+    <meta
+      property="og:url"
+      content="https://adesigners.github.io/Weetech_Frontend"
+    />
+    <meta property="og:image" content="/images/service-banner.png" />
 
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="WeeTech – Leading IT Consultancy & Software Development Company"
+    />
+    <meta
+      name="twitter:description"
+      content="WeeTech delivers secure, scalable IT solutions: development, deployment, testing, cybersecurity, and 24/7 support."
+    />
+    <meta name="twitter:image" content="/images/service-banner.png" />
 
-  <!-- META TAGS -->
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description"
-    content="WeeTech provide online safety for individuals, businesses and provide training, internship in cybersecurity and web development. Experts in network security, SEO and web testing.">
-  <meta name="keyword"
-    content="Best IT company, top digital marketing company, SEO specialist, cyber security company, Best Digital Marketing services in indore, Information and network security.">
-  <link rel="canonical" href="https://Cybite.in/">
-  <meta name="robots" content="index, follow">
+    <link rel="icon" href="images/favicon.png" type="image/icon type" />
+    <!-- boxicon linking -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
 
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
 
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="animate.css" />
 
-  <link rel="icon" href="images/favicon.png" type="image/icon type">
-  <!-- boxicon linking -->
-  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
+    />
 
-  <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async=""
+      src="https://www.googletagmanager.com/gtag/js?id=G-1PBZ5TKGE8"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-  <link rel="stylesheet" href="index.css">
-  <link rel="stylesheet" href="animate.css">
+      gtag("config", "G-1PBZ5TKGE8");
+    </script>
+    <!-- Event snippet for Page view conversion page -->
+    <script>
+      gtag("event", "conversion", {
+        send_to: "AW-16593288557/h6CACNb3tbYZEO36peg9",
+      });
+    </script>
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- Google tag (gtag.js) -->
+    <script
+      async=""
+      src="https://www.googletagmanager.com/gtag/js?id=AW-16593288557"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
+      gtag("config", "AW-16593288557");
+    </script>
 
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org/",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "IT Services",
+            "item": "https://adesigners.github.io/Weetech_Frontendservices"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Our Product",
+            "item": "https://adesigners.github.io/Weetech_Frontendproduct"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "About",
+            "item": "https://adesigners.github.io/Weetech_FrontendAbout"
+          }
+        ]
+      }
+    </script>
+    <!-- Schema Markup ended -->
 
-  <!-- Google tag (gtag.js) -->
-  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-1PBZ5TKGE8"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
+    <script
+      type="text/javascript"
+      async=""
+      src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/16593288557/?random=1747491937995&amp;cv=11&amp;fst=1747491937995&amp;bg=ffffff&amp;guid=ON&amp;async=1&amp;gtm=45be55e1v9186692023za200&amp;gcd=13l3l3l3l1l1&amp;dma=0&amp;tag_exp=101509157~103116026~103130498~103130500~103136993~103136995~103200004~103207802~103233427~103252644~103252646~103263073~103301114~103301116&amp;u_w=1536&amp;u_h=864&amp;url=https%3A%2F%2Fadesigners.github.io%Weetech_Frontend2F&amp;hn=www.googleadservices.com&amp;frm=0&amp;tiba=Best%20Cyber%20Security%20Company%20%7C%20Ethical%20Hacking%20%7C%20Cybite&amp;npa=0&amp;pscdl=noapi&amp;auid=2068114657.1746018479&amp;uaa=x86&amp;uab=64&amp;uafvl=Chromium%3B136.0.7103.114%7CGoogle%2520Chrome%3B136.0.7103.114%7CNot.A%252FBrand%3B99.0.0.0&amp;uamb=0&amp;uam=&amp;uap=Windows&amp;uapv=15.0.0&amp;uaw=0&amp;fledge=1&amp;data=event%3Dgtag.config&amp;rfmt=3&amp;fmt=4"
+    ></script>
+    <script
+      attributionsrc=""
+      type="text/javascript"
+      async=""
+      src="https://www.googleadservices.com/pagead/conversion/16593288557/?random=1747491937957&amp;cv=11&amp;fst=1747491937957&amp;bg=ffffff&amp;guid=ON&amp;async=1&amp;gcl_ctr=3&amp;gtm=45be55e1v9186692023za200&amp;gcd=13l3l3l3l1l1&amp;dma=0&amp;tag_exp=101509157~103116026~103130498~103130500~103136993~103136995~103200004~103207802~103233427~103252644~103252646~103263073~103301114~103301116&amp;u_w=1536&amp;u_h=864&amp;url=https%3A%2F%2Fadesigners.github.io%Weetech_Frontend2F&amp;label=h6CACNb3tbYZEO36peg9&amp;hn=www.googleadservices.com&amp;frm=0&amp;tiba=Best%20Cyber%20Security%20Company%20%7C%20Ethical%20Hacking%20%7C%20Cybite&amp;gtm_ee=1&amp;npa=0&amp;pscdl=noapi&amp;auid=2068114657.1746018479&amp;uaa=x86&amp;uab=64&amp;uafvl=Chromium%3B136.0.7103.114%7CGoogle%2520Chrome%3B136.0.7103.114%7CNot.A%252FBrand%3B99.0.0.0&amp;uamb=0&amp;uam=&amp;uap=Windows&amp;uapv=15.0.0&amp;uaw=0&amp;ec_mode=a&amp;fledge=1&amp;capi=1&amp;data=event%3Dconversion&amp;em=tv.1&amp;rfmt=3&amp;fmt=4"
+    ></script>
+  </head>
 
-    gtag('config', 'G-1PBZ5TKGE8');
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-P9W9L2F3"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
 
-  </script>
-  <!-- Event snippet for Page view conversion page -->
-  <script>
-    gtag('event', 'conversion', { 'send_to': 'AW-16593288557/h6CACNb3tbYZEO36peg9' });
-  </script>
-
-  <!-- Google tag (gtag.js) -->
-  <script async="" src="https://www.googletagmanager.com/gtag/js?id=AW-16593288557"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    gtag('config', 'AW-16593288557');
-  </script>
-
-
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org/", 
-  "@type": "BreadcrumbList", 
-  "itemListElement": [{
-    "@type": "ListItem", 
-    "position": 1, 
-    "name": "IT Services",
-    "item": "https://cybite.in/services"  
-  },{
-    "@type": "ListItem", 
-    "position": 2, 
-    "name": "Our Product",
-    "item": "https://cybite.in/product"  
-  },{
-    "@type": "ListItem", 
-    "position": 3, 
-    "name": "About",
-    "item": "https://cybite.in/About"  
-  }]
-}
-</script>
-  <!-- Schema Markup ended -->
-
-  <script type="text/javascript" async=""
-    src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/16593288557/?random=1747491937995&amp;cv=11&amp;fst=1747491937995&amp;bg=ffffff&amp;guid=ON&amp;async=1&amp;gtm=45be55e1v9186692023za200&amp;gcd=13l3l3l3l1l1&amp;dma=0&amp;tag_exp=101509157~103116026~103130498~103130500~103136993~103136995~103200004~103207802~103233427~103252644~103252646~103263073~103301114~103301116&amp;u_w=1536&amp;u_h=864&amp;url=https%3A%2F%2Fcybite.in%2F&amp;hn=www.googleadservices.com&amp;frm=0&amp;tiba=Best%20Cyber%20Security%20Company%20%7C%20Ethical%20Hacking%20%7C%20Cybite&amp;npa=0&amp;pscdl=noapi&amp;auid=2068114657.1746018479&amp;uaa=x86&amp;uab=64&amp;uafvl=Chromium%3B136.0.7103.114%7CGoogle%2520Chrome%3B136.0.7103.114%7CNot.A%252FBrand%3B99.0.0.0&amp;uamb=0&amp;uam=&amp;uap=Windows&amp;uapv=15.0.0&amp;uaw=0&amp;fledge=1&amp;data=event%3Dgtag.config&amp;rfmt=3&amp;fmt=4"></script>
-  <script attributionsrc="" type="text/javascript" async=""
-    src="https://www.googleadservices.com/pagead/conversion/16593288557/?random=1747491937957&amp;cv=11&amp;fst=1747491937957&amp;bg=ffffff&amp;guid=ON&amp;async=1&amp;gcl_ctr=3&amp;gtm=45be55e1v9186692023za200&amp;gcd=13l3l3l3l1l1&amp;dma=0&amp;tag_exp=101509157~103116026~103130498~103130500~103136993~103136995~103200004~103207802~103233427~103252644~103252646~103263073~103301114~103301116&amp;u_w=1536&amp;u_h=864&amp;url=https%3A%2F%2Fcybite.in%2F&amp;label=h6CACNb3tbYZEO36peg9&amp;hn=www.googleadservices.com&amp;frm=0&amp;tiba=Best%20Cyber%20Security%20Company%20%7C%20Ethical%20Hacking%20%7C%20Cybite&amp;gtm_ee=1&amp;npa=0&amp;pscdl=noapi&amp;auid=2068114657.1746018479&amp;uaa=x86&amp;uab=64&amp;uafvl=Chromium%3B136.0.7103.114%7CGoogle%2520Chrome%3B136.0.7103.114%7CNot.A%252FBrand%3B99.0.0.0&amp;uamb=0&amp;uam=&amp;uap=Windows&amp;uapv=15.0.0&amp;uaw=0&amp;ec_mode=a&amp;fledge=1&amp;capi=1&amp;data=event%3Dconversion&amp;em=tv.1&amp;rfmt=3&amp;fmt=4"></script>
-</head>
-
-<body>
-  <noscript>You need to enable JavaScript to run this app.</noscript>
-  <div id="root"></div>
-
-
-
-  <!-- WOW.JS INITIALIZATION -->
-  <script src="wow.min.js"></script>
-  <script>
-    new WOW().init();
-  </script>
-</body>
-
+    <!-- WOW.JS INITIALIZATION -->
+    <script src="wow.min.js"></script>
+    <script>
+      new WOW().init();
+    </script>
+  </body>
 </html>

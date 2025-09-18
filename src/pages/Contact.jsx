@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+import Seo from "../components/SEO";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -57,6 +58,12 @@ Here are my details:%0A
 
   return (
     <>
+      <Seo
+        title="Contact – WeeTech"
+        description="Have questions or a project in mind? Contact WeeTech for secure, scalable IT solutions and expert guidance."
+        url="https://adesigners.github.io/Weetech_Frontend/#/contact"
+        image="/images/letter_send 1.png"
+      />
       <Header />
       <main className="contact-page" id="contact-page">
         {/* contact form section */}

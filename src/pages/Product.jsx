@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import Seo from "../components/SEO";
 
 const Products = () => {
   const CurvedFourPointStar = ({ size = 30, color = "#ffffff" }) => (
@@ -17,11 +18,21 @@ const Products = () => {
 
   return (
     <>
+      <Seo
+        title="Products – WeeTech Firewall"
+        description="WeeTech Firewall: Next-gen defense with UTM, IDS/IPS, VPN, and Wi‑Fi security for individuals to enterprises."
+        url="https://adesigners.github.io/Weetech_Frontend/#/products"
+        image="/images/fw-icon.png"
+        type="product"
+      />
       <Header />
 
       <main className="product-page" id="product-page">
         {/* products hero section */}
-        <section className="pro-hero-section section-margin" id="pro-hero-section">
+        <section
+          className="pro-hero-section section-margin"
+          id="pro-hero-section"
+        >
           <div className="inner-width">
             <div className="pro-hero-wrapper">
               <div className="ph-left wow fadeInLeft" data-wow-delay=".5s">
@@ -89,7 +100,12 @@ const Products = () => {
         <section className="benefit-section section-margin">
           <div className="inner-width">
             <div className="ben-wrapper">
-              <div className="benefit-heading wow fadeInUp" data-wow-delay=".5s">Benefits of Weetech Firewall</div>
+              <div
+                className="benefit-heading wow fadeInUp"
+                data-wow-delay=".5s"
+              >
+                Benefits of Weetech Firewall
+              </div>
               <div className="benefit-para wow fadeInUp" data-wow-delay=".6s">
                 Experience the peace of mind that comes with knowing your data
                 is secured by an impenetrable defense. The Weetech Firewall is a
@@ -226,7 +242,9 @@ const Products = () => {
         {/* options section */}
         <section className="options-section section-margin">
           <div className="inner-width">
-            <div className="option-heading wow fadeInUp" data-wow-delay=".5s">User-Centric Options</div>
+            <div className="option-heading wow fadeInUp" data-wow-delay=".5s">
+              User-Centric Options
+            </div>
             <div className="option-para wow fadeInUp" data-wow-delay=".5s">
               The WeeTech Firewall isn't a one-size-fits-all solution. We offer
               robust security configurations tailored to your specific needs,
@@ -284,12 +302,10 @@ const Products = () => {
           </div>
         </section>
 
-        <Footer/>
-        
+        <Footer />
       </main>
     </>
   );
 };
 
 export default Products;
-

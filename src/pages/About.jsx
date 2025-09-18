@@ -7,10 +7,17 @@ import { FaEye } from "react-icons/fa";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import WhyCybite from "../components/WhyCybite";
+import Seo from "../components/SEO";
 
 const About = () => {
   return (
     <>
+      <Seo
+        title="About – WeeTech IT Consultancy"
+        description="WeeTech is a trusted IT partner delivering cybersecurity, custom software, and strategic guidance to empower growth."
+        url="https://adesigners.github.io/Weetech_Frontend/#/about"
+        image="/images/founder.png"
+      />
       <Header />
       <main className="about-page" id="about-page">
         {/* about hero */}
@@ -32,10 +39,12 @@ const About = () => {
                 </div>
                 <div className="mv-txt">
                   {/* We envision a future where businesses and individuals can thrive in a secure and connected digital world. */}
-                To become a globally trusted force in IT consultancy — where innovation meets integrity, and technology goes hand-in-hand with empowerment.
-
-We envision a digital world where every organization, regardless of size or sector, can harness technology with confidence, supported by advanced solutions and a well-equipped team that drives sustainable growth.
-
+                  To become a globally trusted force in IT consultancy — where
+                  innovation meets integrity, and technology goes hand-in-hand
+                  with empowerment. We envision a digital world where every
+                  organization, regardless of size or sector, can harness
+                  technology with confidence, supported by advanced solutions
+                  and a well-equipped team that drives sustainable growth.
                 </div>
               </div>
               <div className="mv-card cbl wow zoomInDown" data-wow-delay=".5s">
@@ -46,7 +55,11 @@ We envision a digital world where every organization, regardless of size or sect
                   <p>Our Mission</p>
                 </div>
                 <div className="mv-txt">
-                 To empower businesses and individuals with the expertise and solutions needed to navigate the digital landscape with confidence. We achieve this by delivering comprehensive IT consultancy services, innovative technology solutions, and strategic guidance tailored to every unique need.
+                  To empower businesses and individuals with the expertise and
+                  solutions needed to navigate the digital landscape with
+                  confidence. We achieve this by delivering comprehensive IT
+                  consultancy services, innovative technology solutions, and
+                  strategic guidance tailored to every unique need.
                 </div>
               </div>
               <div className="mv-card ctr wow zoomInDown" data-wow-delay=".5s">
@@ -57,9 +70,11 @@ We envision a digital world where every organization, regardless of size or sect
                   <p>Save Time</p>
                 </div>
                 <div className="mv-txt">
-                At WeeTech, we envision a digital future where security is not a luxury, but a standard — accessible, reliable, and proactive for every organization, individual, and institution.
-
-We are on a mission to lead this transformation by becoming one of the world’s most trusted cybersecurity enablers
+                  At WeeTech, we envision a digital future where security is not
+                  a luxury, but a standard — accessible, reliable, and proactive
+                  for every organization, individual, and institution. We are on
+                  a mission to lead this transformation by becoming one of the
+                  world’s most trusted cybersecurity enablers
                 </div>
               </div>
               <div className="mv-card cbr wow zoomInDown" data-wow-delay=".5s">
@@ -70,7 +85,12 @@ We are on a mission to lead this transformation by becoming one of the world’s
                   <p>Best Performances</p>
                 </div>
                 <div className="mv-txt">
-               WeeTech has emerged as a leading force in IT consultancy by enabling digital transformation, delivering tailored technology solutions, guiding businesses with strategic expertise, and empowering organizations to adopt innovative, future-ready systems that drive growth and resilience. </div>
+                  WeeTech has emerged as a leading force in IT consultancy by
+                  enabling digital transformation, delivering tailored
+                  technology solutions, guiding businesses with strategic
+                  expertise, and empowering organizations to adopt innovative,
+                  future-ready systems that drive growth and resilience.{" "}
+                </div>
               </div>
             </div>
           </div>
