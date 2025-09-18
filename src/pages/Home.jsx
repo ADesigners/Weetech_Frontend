@@ -11,7 +11,6 @@ import Demoprojects from "../components/Demoproject";
 import CookiePopup from "../components/CookiePopup";
 import { loadSection } from "../utils/util";
 
-const API_URL = "https://weetech-backend.onrender.com/";
 const framesData = [
   "Safeguards your digital environment while prioritizing data security and user trust",
   "Defends against evolving threats with a core focus on protecting your data and earning your trust",
@@ -23,12 +22,12 @@ const framesData = [
 
 
 const backgroundImages = [
-  "/images/bg1.png",
-  "/images/bg2.png",
-  "/images/bg3.png",
-  "/images/bg3.png",
-  "/images/bg2.png",
-  "/images/bg1.png",
+  "https://adesigners.github.io/Weetech_Frontend/images/bg1.png",
+  "https://adesigners.github.io/Weetech_Frontend/images/bg2.png",
+  "https://adesigners.github.io/Weetech_Frontend/images/bg3.png",
+  "https://adesigners.github.io/Weetech_Frontend/images/bg3.png",
+  "https://adesigners.github.io/Weetech_Frontend/images/bg2.png",
+  "https://adesigners.github.io/Weetech_Frontend/images/bg1.png",
 ];
 
 const VISIBLE_DURATION = 3000;
@@ -46,9 +45,10 @@ const Home = () => {
   const [testimonialsData, setTestimonialsData] = useState([]);
   const [clientsData, setClientsData] = useState([]);
   const [industryData, setIndustryData] = useState([]);
+  const [sectorData, setSectorData] = useState([]);
   const [teamData, setTeamData] = useState([]);
   const [faqData, setFaqData] = useState([]);
- // ✅ Contact form state
+  // ✅ Contact form state
   const [formData, setFormData] = useState({
     name: "",
     mobile: "",
@@ -56,30 +56,28 @@ const Home = () => {
     message: "",
   });
 
-//    useEffect(() => {
-//     const fetchSections = async () => {
-//       try {
-//         const res = await axios.get(API_URL, {
-//           headers: { "Content-Type": "application/json" },
-//         });
-//         console.log("API response:", res.data);
-//         setSections(res.data.sections || []);
-//       } catch (err) {
-//         console.error("Error fetching sections:", err);
-//         setError("Failed to load content.");
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-//     fetchSections();
-//   }, []);
+  //    useEffect(() => {
+  //     const fetchSections = async () => {
+  //       try {
+  //         const res = await axios.get(API_URL, {
+  //           headers: { "Content-Type": "application/json" },
+  //         });
+  //         console.log("API response:", res.data);
+  //         setSections(res.data.sections || []);
+  //       } catch (err) {
+  //         console.error("Error fetching sections:", err);
+  //         setError("Failed to load content.");
+  //       } finally {
+  //         setLoading(false);
+  //       }
+  //     };
+  //     fetchSections();
+  //   }, []);
 
   const getSection = (id) =>
     sections.find((section) => section.id === id) || { items: [], title: "" };
 
-  const hero = getSection("hero");
-  const clients = getSection("clients");
-  const industries = getSection("industry-expertise");
+  
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -87,11 +85,31 @@ const Home = () => {
     });
   };
 
+  const loadSection = async (sectionName) => {
+    const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${sectionName}?key=${API_KEY}`);
+    const data = await response.json();
+    const rows = data.values;
+
+    if (!rows || rows.length < 2) return [];
+
+    const headers = rows[0];          // ["title","description","image","icon","video"]
+    const items = rows.slice(1).map(row =>
+      Object.fromEntries(
+        headers.map((key, i) => [key, row[i] || ""]) // create {title: "Welcome to WeeTech", ...}
+      )
+    )
+
+    console.log(items);
+
+    return items;
+  }
+
   useEffect(() => {
     loadSection("Hero").then(setHeroData);
     loadSection("Testimonials").then(setTestimonialsData);
     loadSection("Clients").then(setClientsData);
     loadSection("IndustryExpertise").then(setIndustryData);
+    loadSection("Sectors").then(setSectorData);
     loadSection("Team").then(setTeamData);
     loadSection("FAQ").then(setFaqData);
   }, []);
@@ -190,7 +208,7 @@ Here are my details:%0A
 
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 400);
 
- 
+
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 400);
@@ -215,7 +233,7 @@ Here are my details:%0A
             style={{ position: "relative", minHeight: "300px" }}
           >
             <div className="home-head">
-             Smart IT Solutions <br />
+              Smart IT Solutions <br />
               & Expert <br />
             </div>
             {framesData.map((para, index) => {
@@ -235,7 +253,7 @@ Here are my details:%0A
                 >
                   <span className="home-head">Consultancy</span>
                   <div className="home-para"> Empowering businesses with smart, scalable, and secure technology
-        solutions tailored to your needs.</div>
+                    solutions tailored to your needs.</div>
                 </div>
               );
             })}
@@ -255,8 +273,8 @@ Here are my details:%0A
                 </div>
                 <div className="w-p wow fadeInUp" data-wow-delay=".7s">
                   <p>
-                    
-                  {heroData[0]?.description}
+
+                    {heroData[0]?.description}
 
                   </p>
                 </div>
@@ -288,41 +306,41 @@ Here are my details:%0A
             <div className="inner-width client-heading">
               <div className="gradient-left-bg"></div>
               <div className="cl-head">
-                <h2>Our Clients</h2>
+                <h2>{clientsData[0]?.title}</h2>
               </div>
               <div className="cl-brief">
-                <p>We have been working with Trusted Clients</p>
+                <p>{clientsData[0]?.description}</p>
               </div>
             </div>
             <div className="client-slider">
               <div className="scroll-track">
                 <div className="mov">
-                  <img src="/images/cl1.png" alt="" />
-                  <img src="/images/cl2.png" alt="" />
-                  <img src="/images/cl3.png" alt="" />
-                  <img src="/images/cl4.png" alt="" />
-                  <img src="/images/cl5.png" alt="" />
-                  <img src="/images/cl6.png" alt="" />
-                  <img src="/images/cl7.png" alt="" />
-                  <img src="/images/cl8.png" alt="" />
-                  <img src="/images/cl10.png" alt="" />
-                  <img src="/images/cl11.png" alt="" />
-                  <img src="/images/cl12.png" alt="" />
-                  <img src="/images/cl13.png" alt="" />
+                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl1.png" alt="" />
+                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl2.png" alt="" />
+                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl3.png" alt="" />
+                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl4.png" alt="" />
+                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl5.png" alt="" />
+                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl6.png" alt="" />
+                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl7.png" alt="" />
+                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl8.png" alt="" />
+                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl10.png" alt="" />
+                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl11.png" alt="" />
+                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl12.png" alt="" />
+                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl13.png" alt="" />
                 </div>
-                <div className="mov">
-                  <img src="/images/cl1.png" alt="" />
-                  <img src="/images/cl2.png" alt="" />
-                  <img src="/images/cl3.png" alt="" />
-                  <img src="/images/cl4.png" alt="" />
-                  <img src="/images/cl5.png" alt="" />
-                  <img src="/images/cl6.png" alt="" />
-                  <img src="/images/cl7.png" alt="" />
-                  <img src="/images/cl8.png" alt="" />
-                  <img src="/images/cl10.png" alt="" />
-                  <img src="/images/cl11.png" alt="" />
-                  <img src="/images/cl12.png" alt="" />
-                  <img src="/images/cl13.png" alt="" />
+                 <div className="mov">
+                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl1.png" alt="" />
+                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl2.png" alt="" />
+                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl3.png" alt="" />
+                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl4.png" alt="" />
+                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl5.png" alt="" />
+                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl6.png" alt="" />
+                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl7.png" alt="" />
+                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl8.png" alt="" />
+                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl10.png" alt="" />
+                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl11.png" alt="" />
+                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl12.png" alt="" />
+                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl13.png" alt="" />
                 </div>
               </div>
             </div>
@@ -341,21 +359,19 @@ Here are my details:%0A
             >
               <div className="fwg-text">
                 <div className="fwgt-h">
-                  <h1>Fort Knox for Your Data</h1>
+                  <h1>{industryData[0]?.title}</h1>
                 </div>
                 <div className="fwgt-b">
-                  <h4>Introducing the Weetech Firewall</h4>
+                  <h4>{industryData[0]?.subtitle}</h4>
                 </div>
                 <div className="fwgt-p">
                   <p>
-                    Advanced security device acts as a powerful gateway,
-                    meticulously inspecting all incoming and outgoing traffic to
-                    your network.
-                    <li>Next-Gen Threat Detection</li>
-                    <li>Unwavering Intrusion Prevention</li>
-                    <li>Customizable Security Policies</li>
-                    <li>Simplified Management</li>
-                    <li>Scalable Protection</li>
+                    {industryData[0]?.description}
+                    <li>Technology & Software Solutions</li>
+                    <li>Finance & Banking Expertise</li>
+                    <li>Healthcare & Life Sciences</li>
+                    <li>E-Commerce & Retail Innovation</li>
+                    <li>Cloud Solutions</li>
                   </p>
                 </div>
                 <div className="fwgt-r">
@@ -374,7 +390,7 @@ Here are my details:%0A
               <HashLink to="/products#header-wrapper" className="fwg-img">
                 <img
                   className="floating-object"
-                  src="/images/firewall.png"
+                  src="https://adesigners.github.io/Weetech_Frontend/images/firewall.png"
                   alt="Firewall Shield"
                 />
               </HashLink>
@@ -382,7 +398,7 @@ Here are my details:%0A
           </div>
         </section>
 
-       
+
 
         {/* industries section */}
         <section className="indus-section section-margin" id="indus-section">
@@ -393,14 +409,14 @@ Here are my details:%0A
                 data-wow-delay=".3s"
               >
                 <div className="smaller-heading">
-                  <p>EXPERTISE THAT SCALES WITH YOU VISION.</p>
+                  <p>Powering Growth Through Innovation</p>
                 </div>
                 <div className="larger-heading">
-                  <h2>Our Industry Expertise</h2>
+                  <h2>Expertise Across Diverse Sectors</h2>
                 </div>
               </div>
               <div className="indus-grid">
-              {industryData.length > 0 && industryData.map((item, idx) => {
+              {/* {industryData.length > 0 && industryData.map((item, idx) => {
                     (
                         <div className="industry wow zoomIn" data-wow-delay={`${0.3 + 0.2 * idx}s`}>
                             <div className="i-image">
@@ -412,10 +428,20 @@ Here are my details:%0A
                             </div>
                         </div>
                     )
-                })}
+                })} */}
+                <div className="industry wow zoomIn" data-wow-delay=".3s">
+                  <div className="i-image">
+                    <img src="https://adesigners.github.io/Weetech_Frontend/images/indus1.png" alt="" />
+                  </div>
+                  <div className="i-head"> E-commerce</div>
+                  <div className="i-p">
+                    Scalable online store solutions for seamless shopping
+                    experiences
+                  </div>
+                </div>
                 <div className="industry wow zoomIn" data-wow-delay=".5s">
                   <div className="i-image">
-                    <img src="/images/indus2.png" alt="" />
+                    <img src="https://adesigners.github.io/Weetech_Frontend/images/indus2.png" alt="" />
                   </div>
                   <div className="i-head">Healthcare</div>
                   <div className="i-p">
@@ -424,7 +450,7 @@ Here are my details:%0A
                 </div>
                 <div className="industry wow zoomIn" data-wow-delay=".7s">
                   <div className="i-image">
-                    <img src="/images/indus3.png" alt="" />
+                    <img src="https://adesigners.github.io/Weetech_Frontend/images/indus3.png" alt="" />
                   </div>
                   <div className="i-head">Finance</div>
                   <div className="i-p">
@@ -433,7 +459,7 @@ Here are my details:%0A
                 </div>
                 <div className="industry wow zoomIn" data-wow-delay=".9s">
                   <div className="i-image">
-                    <img src="/images/indus4.png" alt="" />
+                    <img src="https://adesigners.github.io/Weetech_Frontend/images/indus4.png" alt="" />
                   </div>
                   <div className="i-head">Education </div>
                   <div className="i-p">
@@ -443,7 +469,7 @@ Here are my details:%0A
                 </div>
                 <div className="industry wow zoomIn" data-wow-delay="1.1s">
                   <div className="i-image">
-                    <img src="/images/indus5.png" alt="" />
+                    <img src="https://adesigners.github.io/Weetech_Frontend/images/indus5.png" alt="" />
                   </div>
                   <div className="i-head">Startups & Enterprises</div>
                   <div className="i-p">
@@ -452,7 +478,7 @@ Here are my details:%0A
                 </div>
                 <div className="industry wow zoomIn" data-wow-delay="1.3s">
                   <div className="i-image">
-                    <img src="/images/indus6.png" alt="" />
+                    <img src="https://adesigners.github.io/Weetech_Frontend/images/indus6.png" alt="" />
                   </div>
                   <div className="i-head">Aviation</div>
                   <div className="i-p">
@@ -462,7 +488,7 @@ Here are my details:%0A
                 </div>
                 <div className="industry wow zoomIn" data-wow-delay="1.5s">
                   <div className="i-image">
-                    <img src="/images/indus7.png" alt="" />
+                    <img src="https://adesigners.github.io/Weetech_Frontend/images/indus7.png" alt="" />
                   </div>
                   <div className="i-head">Retail </div>
                   <div className="i-p">
@@ -472,7 +498,7 @@ Here are my details:%0A
                 </div>
                 <div className="industry wow zoomIn" data-wow-delay="1.8s">
                   <div className="i-image">
-                    <img src="/images/indus8.png" alt="" />
+                    <img src="https://adesigners.github.io/Weetech_Frontend/images/indus8.png" alt="" />
                   </div>
                   <div className="i-head">Hospitality </div>
                   <div className="i-p">
@@ -482,7 +508,7 @@ Here are my details:%0A
                 </div>
                 <div className="industry wow zoomIn" data-wow-delay="2.1s">
                   <div className="i-image">
-                    <img src="/images/indus9.png" alt="" />
+                    <img src="https://adesigners.github.io/Weetech_Frontend/images/indus9.png" alt="" />
                   </div>
                   <div className="i-head">Logistics & Transportation</div>
                   <div className="i-p">
@@ -492,7 +518,7 @@ Here are my details:%0A
                 </div>
                 <div className="industry wow zoomIn" data-wow-delay="2.4s">
                   <div className="i-image">
-                    <img src="/images/indus10.png" alt="" />
+                    <img src="https://adesigners.github.io/Weetech_Frontend/images/indus10.png" alt="" />
                   </div>
                   <div className="i-head">Real Estate</div>
                   <div className="i-p">
@@ -502,7 +528,7 @@ Here are my details:%0A
                 </div>
                 <div className="industry wow zoomIn" data-wow-delay="2.7s">
                   <div className="i-image">
-                    <img src="/images/indus11.png" alt="" />
+                    <img src="https://adesigners.github.io/Weetech_Frontend/images/indus11.png" alt="" />
                   </div>
                   <div className="i-head">Telecommunications</div>
                   <div className="i-p">
@@ -512,7 +538,7 @@ Here are my details:%0A
                 </div>
                 <div className="industry wow zoomIn" data-wow-delay="3s">
                   <div className="i-image">
-                    <img src="/images/indus12.png" alt="" />
+                    <img src="https://adesigners.github.io/Weetech_Frontend/images/indus12.png" alt="" />
                   </div>
                   <div className="i-head">Manufacturing</div>
                   <div className="i-p">
@@ -543,7 +569,7 @@ Here are my details:%0A
                   <h2>How It Works</h2>
                 </div>
               </div>
-             
+
               <section className="stacking-card">
                 <div id="stack">
                   <div className="card wow fadeInLeft" data-wow-delay=".5s">
@@ -611,7 +637,7 @@ Here are my details:%0A
         {/* <Projects /> */}
         <Demoprojects />
 
-       
+
 
 
         {/* form-section */}
@@ -625,7 +651,7 @@ Here are my details:%0A
               playsInline
               preload="auto"
             >
-              <source src="/images/formvdo.mp4" type="video/mp4" />
+              <source src="https://adesigners.github.io/Weetech_Frontend/images/formvdo.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
 
@@ -636,53 +662,53 @@ Here are my details:%0A
               >
                 <h3 className="form-subtitle">CONTACT US</h3>
                 <h2 className="form-title">Get in touch today</h2>
-                
+
                 <form className="contact-form" onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="name"
-        placeholder="Name"
-        required
-        onChange={handleChange}
-      />
-      <input
-        type="tel"
-        name="mobile"
-        placeholder="Mobile Number"
-        required
-        onChange={handleChange}
-      />
-      <input
-        type="email"
-        name="email"
-        placeholder="Email"
-        required
-        onChange={handleChange}
-      />
-      <textarea
-        name="message"
-        placeholder="Please type your message here..."
-        required
-        onChange={handleChange}
-      ></textarea>
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Name"
+                    required
+                    onChange={handleChange}
+                  />
+                  <input
+                    type="tel"
+                    name="mobile"
+                    placeholder="Mobile Number"
+                    required
+                    onChange={handleChange}
+                  />
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    required
+                    onChange={handleChange}
+                  />
+                  <textarea
+                    name="message"
+                    placeholder="Please type your message here..."
+                    required
+                    onChange={handleChange}
+                  ></textarea>
 
-      <div className="form-agreement">
-        <input type="checkbox" id="agree" required />
-        <label htmlFor="agree">
-          By clicking <strong>Send application</strong>, you agree to our{" "}
-          <Link className="a" to="/">
-            User Agreement
-          </Link>
-          <Link className="a" to="/">
-            Privacy Policy
-          </Link>
-        </label>
-      </div>
+                  <div className="form-agreement">
+                    <input type="checkbox" id="agree" required />
+                    <label htmlFor="agree">
+                      By clicking <strong>Send application</strong>, you agree to our{" "}
+                      <Link className="a" to="/">
+                        User Agreement
+                      </Link>
+                      <Link className="a" to="/">
+                        Privacy Policy
+                      </Link>
+                    </label>
+                  </div>
 
-      <button type="submit" className="form-submit-btn">
-        Send Message
-      </button>
-    </form>
+                  <button type="submit" className="form-submit-btn">
+                    Send Message
+                  </button>
+                </form>
               </div>
             </div>
           </div>
