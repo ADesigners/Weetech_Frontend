@@ -631,8 +631,7 @@ body {
 
 .projects-section .projects .projects-wrapper .project-card .pro-img {
     width: 100%;
-    /* height: auto; */
-    max-height: 200px;
+    height: auto;
     margin-bottom: 1rem;
     overflow: hidden;
     border-radius: 16px;
@@ -642,7 +641,7 @@ body {
 
 .projects-section .projects .projects-wrapper .project-card .pro-img img {
     width: 100%;
-    height: auto;
+    max-height: 200px;
     border-radius: 16px;
 }
 
@@ -5180,3 +5179,22 @@ body {
 
 
 /* ******************** RESPONSIVE START ******************** */
+
+/* added slide animations for team carousel */
+.testimonial-row.slide-left {
+    animation: slideLeft 0.4s ease-in-out;
+}
+
+.testimonial-row.slide-right {
+    animation: slideRight 0.4s ease-in-out;
+}
+
+@keyframes slideLeft {
+    0% { transform: translateX(15px); opacity: 0.8; }
+    100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideRight {
+    0% { transform: translateX(-15px); opacity: 0.8; }
+    100% { transform: translateX(0); opacity: 1; }
+}

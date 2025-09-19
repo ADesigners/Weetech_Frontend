@@ -59,9 +59,9 @@ const Services = () => {
                 {idx % 2 !== 0 && (
                   <div className="dev-img">
                     {item.image ? (
-                      <img src={item.image} alt="" />
+                      <img src={item.image} alt="" style={{ objectFit: "contain", width: "100%", height: "100%" }} />
                     ) : (
-                      <img src="/images/ser-bann.jpg" alt="" />
+                      <img src="/images/ser-bann.jpg" alt="" style={{ objectFit: "contain", width: "100%", height: "100%" }} />
                     )}
                   </div>
                 )}
@@ -79,9 +79,9 @@ const Services = () => {
                 {idx % 2 === 0 && (
                   <div className="dev-img">
                     {item.image ? (
-                      <img src={item.image} alt="" />
+                      <img src={item.image} alt="" style={{ objectFit: "contain", width: "100%", height: "100%" }} />
                     ) : (
-                      <img src="/images/ser-bann.jpg" alt="" />
+                      <img src="/images/ser-bann.jpg" alt="" style={{ objectFit: "contain", width: "100%", height: "100%" }} />
                     )}
                   </div>
                 )}
