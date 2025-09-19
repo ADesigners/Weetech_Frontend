@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import CookiePopup from "../components/CookiePopup";
 import { loadSection } from "../utils/util";
+import Seo from "../components/SEO";
 
 const Services = () => {
   const [servicesData, setServicesData] = useState([]);
@@ -15,6 +16,12 @@ const Services = () => {
 
   return (
     <>
+      <Seo
+        title="Services – WeeTech IT Consultancy"
+        description="End-to-end services: UI/UX, development, deployment, testing, domain & hosting, and 24/7 support. Built for performance, reliability, and security."
+        url="https://adesigners.github.io/Weetech_Frontend/#/services"
+        image="/images/ser-hero-img.png"
+      />
       <Header />
       <main className="services-page" id="services-page">
         {/* Service hero */}
@@ -27,10 +34,15 @@ const Services = () => {
                 </div>
                 <div className="sht-p wow fadeInUp" data-wow-delay=".5s">
                   <p>
-                  Bring your ideas to life with WeeTech’s premium development services. From websites to mobile apps, desktop solutions to custom software, we design and build powerful, scalable technology tailored to your business needs.
+                    Bring your ideas to life with WeeTech’s premium development
+                    services. From websites to mobile apps, desktop solutions to
+                    custom software, we design and build powerful, scalable
+                    technology tailored to your business needs.
                   </p>
                   <button
-                    onClick={() => devSection.current.scrollIntoView({ behavior: 'smooth' })}
+                    onClick={() =>
+                      devSection.current.scrollIntoView({ behavior: "smooth" })
+                    }
                     className="sht-b wow fadeInUp"
                     data-wow-delay=".7s"
                   >
@@ -46,8 +58,13 @@ const Services = () => {
         </div>
 
         {/* development section  */}
-        <div ref={devSection} className="dev-section section-margin" id="dev-section">
-        {servicesData && servicesData.length > 0 && (
+        <div
+          ref={devSection}
+          className="dev-section section-margin"
+          id="dev-section"
+        >
+          {servicesData &&
+            servicesData.length > 0 &&
             servicesData.map((item, idx) => (
               <div
                 key={idx}
@@ -86,8 +103,7 @@ const Services = () => {
                   </div>
                 )}
               </div>
-            ))
-          )}
+            ))}
         </div>
 
         {/* Banner section */}

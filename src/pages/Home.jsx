@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Seo from "../components/SEO";
 import { Link } from "react-router-dom";
 
 import { HashLink as HashLink } from "react-router-hash-link";
@@ -21,7 +22,6 @@ const framesData = [
   "Protect while prioritizing data security and user trust",
 ];
 
-
 const backgroundImages = [
   "https://adesigners.github.io/Weetech_Frontend/images/bg1.png",
   "https://adesigners.github.io/Weetech_Frontend/images/bg2.png",
@@ -34,7 +34,6 @@ const backgroundImages = [
 const VISIBLE_DURATION = 3000;
 const FADE_DURATION = 750;
 const BLANK_DURATION = 500;
-
 
 const Home = () => {
   const [sections, setSections] = useState([]);
@@ -78,7 +77,6 @@ const Home = () => {
   const getSection = (id) =>
     sections.find((section) => section.id === id) || { items: [], title: "" };
 
-  
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -145,8 +143,6 @@ Here are my details:%0A
   const [index, setIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
 
-
-
   useEffect(() => {
     const video = document.querySelector(".form-bg-video");
 
@@ -157,7 +153,7 @@ Here are my details:%0A
         const playPromise = video.play();
         if (playPromise !== undefined) {
           playPromise
-            .then(() => { })
+            .then(() => {})
             .catch((error) => {
               console.warn("Autoplay was blocked:", error);
             });
@@ -190,7 +186,6 @@ Here are my details:%0A
 
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 400);
 
-
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 400);
@@ -202,6 +197,12 @@ Here are my details:%0A
 
   return (
     <>
+      <Seo
+        title="WeeTech – Smart IT Solutions & Expert Consultancy"
+        description="WeeTech delivers secure, scalable IT solutions: development, deployment, testing, cybersecurity, and 24/7 support. Empower your business with innovation."
+        url="https://adesigners.github.io/Weetech_Frontend/#/"
+        image="/images/service-banner.png"
+      />
       <Header />
       <main className="home-page">
         {/* hero section */}
@@ -234,8 +235,11 @@ Here are my details:%0A
                   }}
                 >
                   <span className="home-head">Consultancy</span>
-                  <div className="home-para"> Empowering businesses with smart, scalable, and secure technology
-                    solutions tailored to your needs.</div>
+                  <div className="home-para">
+                    {" "}
+                    Empowering businesses with smart, scalable, and secure
+                    technology solutions tailored to your needs.
+                  </div>
                 </div>
               );
             })}
@@ -254,11 +258,7 @@ Here are my details:%0A
                   <h1> {heroData[0]?.title}</h1>
                 </div>
                 <div className="w-p wow fadeInUp" data-wow-delay=".7s">
-                  <p>
-
-                    {heroData[0]?.description}
-
-                  </p>
+                  <p>{heroData[0]?.description}</p>
                 </div>
                 <div className="w-btn-arr wow fadeInUp" data-wow-delay=".7s ">
                   <Link className="w-btns wl-btn" to="/services">
@@ -297,32 +297,104 @@ Here are my details:%0A
             <div className="client-slider">
               <div className="scroll-track">
                 <div className="mov">
-                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl1.png" alt="" />
-                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl2.png" alt="" />
-                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl3.png" alt="" />
-                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl4.png" alt="" />
-                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl5.png" alt="" />
-                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl6.png" alt="" />
-                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl7.png" alt="" />
-                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl8.png" alt="" />
-                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl10.png" alt="" />
-                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl11.png" alt="" />
-                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl12.png" alt="" />
-                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl13.png" alt="" />
+                  <img
+                    src="https://adesigners.github.io/Weetech_Frontend/images/cl1.png"
+                    alt=""
+                  />
+                  <img
+                    src="https://adesigners.github.io/Weetech_Frontend/images/cl2.png"
+                    alt=""
+                  />
+                  <img
+                    src="https://adesigners.github.io/Weetech_Frontend/images/cl3.png"
+                    alt=""
+                  />
+                  <img
+                    src="https://adesigners.github.io/Weetech_Frontend/images/cl4.png"
+                    alt=""
+                  />
+                  <img
+                    src="https://adesigners.github.io/Weetech_Frontend/images/cl5.png"
+                    alt=""
+                  />
+                  <img
+                    src="https://adesigners.github.io/Weetech_Frontend/images/cl6.png"
+                    alt=""
+                  />
+                  <img
+                    src="https://adesigners.github.io/Weetech_Frontend/images/cl7.png"
+                    alt=""
+                  />
+                  <img
+                    src="https://adesigners.github.io/Weetech_Frontend/images/cl8.png"
+                    alt=""
+                  />
+                  <img
+                    src="https://adesigners.github.io/Weetech_Frontend/images/cl10.png"
+                    alt=""
+                  />
+                  <img
+                    src="https://adesigners.github.io/Weetech_Frontend/images/cl11.png"
+                    alt=""
+                  />
+                  <img
+                    src="https://adesigners.github.io/Weetech_Frontend/images/cl12.png"
+                    alt=""
+                  />
+                  <img
+                    src="https://adesigners.github.io/Weetech_Frontend/images/cl13.png"
+                    alt=""
+                  />
                 </div>
-                 <div className="mov">
-                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl1.png" alt="" />
-                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl2.png" alt="" />
-                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl3.png" alt="" />
-                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl4.png" alt="" />
-                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl5.png" alt="" />
-                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl6.png" alt="" />
-                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl7.png" alt="" />
-                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl8.png" alt="" />
-                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl10.png" alt="" />
-                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl11.png" alt="" />
-                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl12.png" alt="" />
-                  <img src="https://adesigners.github.io/Weetech_Frontend/images/cl13.png" alt="" />
+                <div className="mov">
+                  <img
+                    src="https://adesigners.github.io/Weetech_Frontend/images/cl1.png"
+                    alt=""
+                  />
+                  <img
+                    src="https://adesigners.github.io/Weetech_Frontend/images/cl2.png"
+                    alt=""
+                  />
+                  <img
+                    src="https://adesigners.github.io/Weetech_Frontend/images/cl3.png"
+                    alt=""
+                  />
+                  <img
+                    src="https://adesigners.github.io/Weetech_Frontend/images/cl4.png"
+                    alt=""
+                  />
+                  <img
+                    src="https://adesigners.github.io/Weetech_Frontend/images/cl5.png"
+                    alt=""
+                  />
+                  <img
+                    src="https://adesigners.github.io/Weetech_Frontend/images/cl6.png"
+                    alt=""
+                  />
+                  <img
+                    src="https://adesigners.github.io/Weetech_Frontend/images/cl7.png"
+                    alt=""
+                  />
+                  <img
+                    src="https://adesigners.github.io/Weetech_Frontend/images/cl8.png"
+                    alt=""
+                  />
+                  <img
+                    src="https://adesigners.github.io/Weetech_Frontend/images/cl10.png"
+                    alt=""
+                  />
+                  <img
+                    src="https://adesigners.github.io/Weetech_Frontend/images/cl11.png"
+                    alt=""
+                  />
+                  <img
+                    src="https://adesigners.github.io/Weetech_Frontend/images/cl12.png"
+                    alt=""
+                  />
+                  <img
+                    src="https://adesigners.github.io/Weetech_Frontend/images/cl13.png"
+                    alt=""
+                  />
                 </div>
               </div>
             </div>
@@ -380,8 +452,6 @@ Here are my details:%0A
           </div>
         </section>
 
-
-
         {/* industries section */}
         <section className="indus-section section-margin" id="indus-section">
           <div className="inner-width">
@@ -398,7 +468,7 @@ Here are my details:%0A
                 </div>
               </div>
               <div className="indus-grid">
-              {/* {industryData.length > 0 && industryData.map((item, idx) => {
+                {/* {industryData.length > 0 && industryData.map((item, idx) => {
                     (
                         <div className="industry wow zoomIn" data-wow-delay={`${0.3 + 0.2 * idx}s`}>
                             <div className="i-image">
@@ -413,7 +483,10 @@ Here are my details:%0A
                 })} */}
                 <div className="industry wow zoomIn" data-wow-delay=".3s">
                   <div className="i-image">
-                    <img src="https://adesigners.github.io/Weetech_Frontend/images/indus1.png" alt="" />
+                    <img
+                      src="https://adesigners.github.io/Weetech_Frontend/images/indus1.png"
+                      alt=""
+                    />
                   </div>
                   <div className="i-head"> E-commerce</div>
                   <div className="i-p">
@@ -423,7 +496,10 @@ Here are my details:%0A
                 </div>
                 <div className="industry wow zoomIn" data-wow-delay=".5s">
                   <div className="i-image">
-                    <img src="https://adesigners.github.io/Weetech_Frontend/images/indus2.png" alt="" />
+                    <img
+                      src="https://adesigners.github.io/Weetech_Frontend/images/indus2.png"
+                      alt=""
+                    />
                   </div>
                   <div className="i-head">Healthcare</div>
                   <div className="i-p">
@@ -432,7 +508,10 @@ Here are my details:%0A
                 </div>
                 <div className="industry wow zoomIn" data-wow-delay=".7s">
                   <div className="i-image">
-                    <img src="https://adesigners.github.io/Weetech_Frontend/images/indus3.png" alt="" />
+                    <img
+                      src="https://adesigners.github.io/Weetech_Frontend/images/indus3.png"
+                      alt=""
+                    />
                   </div>
                   <div className="i-head">Finance</div>
                   <div className="i-p">
@@ -441,7 +520,10 @@ Here are my details:%0A
                 </div>
                 <div className="industry wow zoomIn" data-wow-delay=".9s">
                   <div className="i-image">
-                    <img src="https://adesigners.github.io/Weetech_Frontend/images/indus4.png" alt="" />
+                    <img
+                      src="https://adesigners.github.io/Weetech_Frontend/images/indus4.png"
+                      alt=""
+                    />
                   </div>
                   <div className="i-head">Education </div>
                   <div className="i-p">
@@ -451,7 +533,10 @@ Here are my details:%0A
                 </div>
                 <div className="industry wow zoomIn" data-wow-delay="1.1s">
                   <div className="i-image">
-                    <img src="https://adesigners.github.io/Weetech_Frontend/images/indus5.png" alt="" />
+                    <img
+                      src="https://adesigners.github.io/Weetech_Frontend/images/indus5.png"
+                      alt=""
+                    />
                   </div>
                   <div className="i-head">Startups & Enterprises</div>
                   <div className="i-p">
@@ -460,7 +545,10 @@ Here are my details:%0A
                 </div>
                 <div className="industry wow zoomIn" data-wow-delay="1.3s">
                   <div className="i-image">
-                    <img src="https://adesigners.github.io/Weetech_Frontend/images/indus6.png" alt="" />
+                    <img
+                      src="https://adesigners.github.io/Weetech_Frontend/images/indus6.png"
+                      alt=""
+                    />
                   </div>
                   <div className="i-head">Aviation</div>
                   <div className="i-p">
@@ -470,7 +558,10 @@ Here are my details:%0A
                 </div>
                 <div className="industry wow zoomIn" data-wow-delay="1.5s">
                   <div className="i-image">
-                    <img src="https://adesigners.github.io/Weetech_Frontend/images/indus7.png" alt="" />
+                    <img
+                      src="https://adesigners.github.io/Weetech_Frontend/images/indus7.png"
+                      alt=""
+                    />
                   </div>
                   <div className="i-head">Retail </div>
                   <div className="i-p">
@@ -480,7 +571,10 @@ Here are my details:%0A
                 </div>
                 <div className="industry wow zoomIn" data-wow-delay="1.8s">
                   <div className="i-image">
-                    <img src="https://adesigners.github.io/Weetech_Frontend/images/indus8.png" alt="" />
+                    <img
+                      src="https://adesigners.github.io/Weetech_Frontend/images/indus8.png"
+                      alt=""
+                    />
                   </div>
                   <div className="i-head">Hospitality </div>
                   <div className="i-p">
@@ -490,7 +584,10 @@ Here are my details:%0A
                 </div>
                 <div className="industry wow zoomIn" data-wow-delay="2.1s">
                   <div className="i-image">
-                    <img src="https://adesigners.github.io/Weetech_Frontend/images/indus9.png" alt="" />
+                    <img
+                      src="https://adesigners.github.io/Weetech_Frontend/images/indus9.png"
+                      alt=""
+                    />
                   </div>
                   <div className="i-head">Logistics & Transportation</div>
                   <div className="i-p">
@@ -500,7 +597,10 @@ Here are my details:%0A
                 </div>
                 <div className="industry wow zoomIn" data-wow-delay="2.4s">
                   <div className="i-image">
-                    <img src="https://adesigners.github.io/Weetech_Frontend/images/indus10.png" alt="" />
+                    <img
+                      src="https://adesigners.github.io/Weetech_Frontend/images/indus10.png"
+                      alt=""
+                    />
                   </div>
                   <div className="i-head">Real Estate</div>
                   <div className="i-p">
@@ -510,7 +610,10 @@ Here are my details:%0A
                 </div>
                 <div className="industry wow zoomIn" data-wow-delay="2.7s">
                   <div className="i-image">
-                    <img src="https://adesigners.github.io/Weetech_Frontend/images/indus11.png" alt="" />
+                    <img
+                      src="https://adesigners.github.io/Weetech_Frontend/images/indus11.png"
+                      alt=""
+                    />
                   </div>
                   <div className="i-head">Telecommunications</div>
                   <div className="i-p">
@@ -520,7 +623,10 @@ Here are my details:%0A
                 </div>
                 <div className="industry wow zoomIn" data-wow-delay="3s">
                   <div className="i-image">
-                    <img src="https://adesigners.github.io/Weetech_Frontend/images/indus12.png" alt="" />
+                    <img
+                      src="https://adesigners.github.io/Weetech_Frontend/images/indus12.png"
+                      alt=""
+                    />
                   </div>
                   <div className="i-head">Manufacturing</div>
                   <div className="i-p">
@@ -619,7 +725,6 @@ Here are my details:%0A
         {/* <Projects /> */}
         <Demoprojects />
 
-
         {/* Team Section */}
         <Team />
 
@@ -634,7 +739,10 @@ Here are my details:%0A
               playsInline
               preload="auto"
             >
-              <source src="https://adesigners.github.io/Weetech_Frontend/images/formvdo.mp4" type="video/mp4" />
+              <source
+                src="https://adesigners.github.io/Weetech_Frontend/images/formvdo.mp4"
+                type="video/mp4"
+              />
               Your browser does not support the video tag.
             </video>
 
@@ -678,7 +786,8 @@ Here are my details:%0A
                   <div className="form-agreement">
                     <input type="checkbox" id="agree" required />
                     <label htmlFor="agree">
-                      By clicking <strong>Send application</strong>, you agree to our{" "}
+                      By clicking <strong>Send application</strong>, you agree
+                      to our{" "}
                       <Link className="a" to="/">
                         User Agreement
                       </Link>
