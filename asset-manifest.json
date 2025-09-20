@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/Weetech_Frontend/static/css/main.ffc70f6c.css",
-    "main.js": "/Weetech_Frontend/static/js/main.e3519d4f.js",
+    "main.js": "/Weetech_Frontend/static/js/main.c6b6b512.js",
     "static/js/453.4afb9c84.chunk.js": "/Weetech_Frontend/static/js/453.4afb9c84.chunk.js",
     "static/media/career-bg1.jpg": "/Weetech_Frontend/static/media/career-bg1.e62458da8c41296d1cd7.jpg",
     "static/media/Rectangle30.png": "/Weetech_Frontend/static/media/Rectangle30.d18df121de5f59feb8d9.png",
     "index.html": "/Weetech_Frontend/index.html",
     "main.ffc70f6c.css.map": "/Weetech_Frontend/static/css/main.ffc70f6c.css.map",
-    "main.e3519d4f.js.map": "/Weetech_Frontend/static/js/main.e3519d4f.js.map",
+    "main.c6b6b512.js.map": "/Weetech_Frontend/static/js/main.c6b6b512.js.map",
     "453.4afb9c84.chunk.js.map": "/Weetech_Frontend/static/js/453.4afb9c84.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ffc70f6c.css",
-    "static/js/main.e3519d4f.js"
+    "static/js/main.c6b6b512.js"
   ]
 }
