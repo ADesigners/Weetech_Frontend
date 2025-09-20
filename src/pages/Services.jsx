@@ -113,7 +113,7 @@ const Services = () => {
               <h2>Building a Connected Future</h2>
             </div>
             <div className="ser-banner wow zoomIn" data-wow-delay=".5s">
-              <img src="/images/service-banner.png" alt="" />
+              <img src="https://res.cloudinary.com/dsmfohpjv/image/upload/v1758180816/service-banner_jq5j2h.png" alt="" />
             </div>
           </div>
         </section>

@@ -12,6 +12,7 @@ import Demoprojects from "../components/Demoproject";
 import CookiePopup from "../components/CookiePopup";
 import { loadSection } from "../utils/util";
 import Team from "../components/Team";
+import Testimonial from "../components/Testimonial";
 
 const framesData = [
   "Safeguards your digital environment while prioritizing data security and user trust",
@@ -42,11 +43,9 @@ const Home = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [phase, setPhase] = useState("visible");
   const [heroData, setHeroData] = useState([]);
-  const [testimonialsData, setTestimonialsData] = useState([]);
-  const [clientsData, setClientsData] = useState([]);
+//   const [clientsData, setClientsData] = useState([]);
   const [industryData, setIndustryData] = useState([]);
-  const [sectorData, setSectorData] = useState([]);
-  const [teamData, setTeamData] = useState([]);
+//   const [sectorData, setSectorData] = useState([]);
   const [faqData, setFaqData] = useState([]);
   // ✅ Contact form state
   const [formData, setFormData] = useState({
@@ -86,12 +85,10 @@ const Home = () => {
 
   useEffect(() => {
     loadSection("Hero").then(setHeroData);
-    loadSection("Testimonials").then(setTestimonialsData);
-    loadSection("Clients").then(setClientsData);
+    // loadSection("Clients").then(setClientsData);
     loadSection("IndustryExpertise").then(setIndustryData);
-    loadSection("Sectors").then(setSectorData);
-    loadSection("Team").then(setTeamData);
-    loadSection("FAQ").then(setFaqData);
+    // loadSection("Sectors").then(setSectorData);
+    // loadSection("FAQ").then(setFaqData);
   }, []);
 
   // ✅ Handle form submit (WhatsApp integration)
@@ -283,7 +280,7 @@ Here are my details:%0A
         </section>
 
         {/* client section */}
-        <section className="client-section section-margin" id="client-section">
+        {/* <section className="client-section section-margin" id="client-section">
           <div className="client-wrapper">
             <div className="inner-width client-heading">
               <div className="gradient-left-bg"></div>
@@ -399,7 +396,7 @@ Here are my details:%0A
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* firewall section */}
         <section
@@ -724,6 +721,9 @@ Here are my details:%0A
         {/* Projects section */}
         {/* <Projects /> */}
         <Demoprojects />
+
+        {/* Testimonial section */}
+        <Testimonial />
 
         {/* Team Section */}
         <Team />
